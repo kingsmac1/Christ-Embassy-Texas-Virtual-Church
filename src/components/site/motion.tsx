@@ -10,12 +10,14 @@ export function Reveal({
   children,
   delay = 0,
   y = 28,
+  x = 0,
   className,
   as = "div",
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
+  x?: number;
   className?: string;
   as?: "div" | "section" | "li" | "article";
 }) {
@@ -25,8 +27,8 @@ export function Reveal({
   return (
     <Tag
       className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+      initial={reduce ? false : { opacity: 0, y, x }}
+      whileInView={reduce ? {} : { opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, amount: 0.2, margin: "0px 0px -60px 0px" }}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -149,28 +151,30 @@ export function PageTransition({ children }: { children: ReactNode }) {
   );
 }
 
-/** Enables Lenis smooth scrolling for the whole document. */
+/** Enables Lenis smooth scrolling and keeps GSAP ScrollTrigger in sync with it. */
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     let cancelled = false;
+    let cleanup = () => {};
 
-    void import("lenis").then(({ default: Lenis }) => {
+    void Promise.all([import("lenis"), import("@/lib/gsap")]).then(([{ default: Lenis }, { gsap, ScrollTrigger, registerGsap }]) => {
       if (cancelled) return;
-      lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-      const loop = (time: number) => {
-        lenis?.raf(time);
-        raf = requestAnimationFrame(loop);
+      registerGsap();
+      const lenis = new Lenis({ duration: 1.15, smoothWheel: true, autoRaf: false });
+      lenis.on("scroll", ScrollTrigger.update);
+      const tick = (time: number) => lenis.raf(time * 1000);
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+      cleanup = () => {
+        gsap.ticker.remove(tick);
+        lenis.destroy();
       };
-      raf = requestAnimationFrame(loop);
     });
 
     return () => {
       cancelled = true;
-      cancelAnimationFrame(raf);
-      lenis?.destroy();
+      cleanup();
     };
   }, []);
 

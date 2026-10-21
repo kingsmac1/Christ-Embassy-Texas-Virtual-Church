@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import type { CarouselApi } from "@/components/ui/carousel";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -9,6 +9,7 @@ import { MINISTRY_APPS } from "@/data/apps";
 import { cn } from "@/lib/utils";
 import { Bokeh } from "./Bokeh";
 import { HeroReveal, Reveal } from "./motion";
+import { ParallaxImage, PointerGlow, ScrollWords, SplitReveal, TiltCard } from "./fx";
 import { PillAnchor, PillLink, Section } from "./ui";
 
 /** Renders HTML that was written on the original WordPress page (bold, links, line breaks). */
@@ -35,7 +36,7 @@ export function splitParagraphs(html: string): string[] {
   return html.split(/(?:<br\/>\s*){2,}/).map((p) => p.trim()).filter(Boolean);
 }
 
-/** Dark page banner with the page title (the original pages' image banner with H1). */
+/** Dark page banner with the page title. The photo drifts and zooms as you scroll away, the title rises letter by letter. */
 export function PageHero({
   title,
   image = "/images/2023__10__Audience.png",
@@ -45,35 +46,64 @@ export function PageHero({
   image?: string | null;
   children?: ReactNode;
 }) {
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const imgY = useTransform(scrollY, [0, 700], [0, 220]);
+  const imgScale = useTransform(scrollY, [0, 700], [1, 1.28]);
+  const contentY = useTransform(scrollY, [0, 520], [0, -80]);
+  const contentOpacity = useTransform(scrollY, [0, 440], [1, 0]);
   return (
     <section className="relative overflow-hidden bg-deep py-24 text-deep-foreground sm:py-32">
-      {image ? <img src={image} alt="" className="absolute inset-0 -z-20 size-full object-cover opacity-30" /> : null}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/70 to-deep/30" />
-      <Bokeh />
-      <div className="container-site relative text-center">
-        <HeroReveal
-          heading={<h1 className="mx-auto max-w-4xl text-4xl font-semibold sm:text-6xl">{title}</h1>}
-          body={children ? <div className="mx-auto mt-5 max-w-3xl text-base text-deep-foreground/80 sm:text-lg">{children}</div> : undefined}
+      {image ? (
+        <motion.img
+          src={image}
+          alt=""
+          className="absolute inset-0 -z-20 size-full object-cover opacity-30"
+          {...(reduce ? {} : { style: { y: imgY, scale: imgScale } })}
         />
-      </div>
+      ) : null}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/70 to-deep/30" />
+      <PointerGlow />
+      <Bokeh />
+      <motion.div className="container-site relative text-center" {...(reduce ? {} : { style: { y: contentY, opacity: contentOpacity } })}>
+        <SplitReveal as="h1" waitForPreloader className="mx-auto max-w-4xl font-display text-4xl leading-[1.05] font-semibold sm:text-6xl">
+          {title}
+        </SplitReveal>
+        {children ? (
+          <Reveal delay={0.5} className="mx-auto mt-5 max-w-3xl text-base text-deep-foreground/80 sm:text-lg">
+            {children}
+          </Reveal>
+        ) : null}
+      </motion.div>
     </section>
   );
 }
 
-/** Closing dark band with a heading and one button ("Find yourself in Christ today…"). */
+/** Closing dark band: two big rings expand and turn as it scrolls into view behind a letter-by-letter heading. */
 export function ClosingBand({ heading, buttonLabel, to }: { heading: string; buttonLabel: string; to: string }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const ringScale = useTransform(scrollYProgress, [0, 1], [0.5, 1.6]);
+  const ringRotate = useTransform(scrollYProgress, [0, 1], [-40, 140]);
+  const ringScale2 = useTransform(scrollYProgress, [0, 1], [0.3, 1.2]);
   return (
-    <section className="relative overflow-hidden bg-deep py-20 text-deep-foreground sm:py-28">
+    <section ref={ref} className="relative overflow-hidden bg-deep py-24 text-deep-foreground sm:py-32">
+      <PointerGlow />
       <Bokeh />
+      <motion.div aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/2 size-[44rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-deep-foreground/10 [border-style:dashed]" {...(reduce ? {} : { style: { scale: ringScale, rotate: ringRotate } })} />
+      <motion.div aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/2 size-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/30" {...(reduce ? {} : { style: { scale: ringScale2, rotate: ringRotate } })} />
       <div className="container-site relative text-center">
-        <Reveal className="mx-auto max-w-3xl">
-          <h2 className="font-display text-3xl leading-tight font-semibold sm:text-5xl">{heading}</h2>
-          <div className="mt-8">
+        <div className="mx-auto max-w-3xl">
+          <SplitReveal as="h2" by="words" className="font-display text-3xl leading-tight font-semibold sm:text-5xl">
+            {heading}
+          </SplitReveal>
+          <Reveal delay={0.35} className="mt-8">
             <PillLink to={to as "/"} variant="accent">
               {buttonLabel}
             </PillLink>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -94,11 +124,12 @@ export function MinistryApps({ heading = "Our Ministry Apps", viewMore }: { head
   return (
     <Section tone="cream">
       <Reveal>
-        <h2 className="text-center text-4xl font-semibold sm:text-5xl">{heading}</h2>
+        <SplitReveal as="h2" className="text-center text-4xl font-semibold sm:text-5xl">{heading}</SplitReveal>
       </Reveal>
       <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
         {MINISTRY_APPS.map((app, i) => (
           <Reveal key={app.title} delay={i * 0.08}>
+            <TiltCard className="rounded-[1.75rem]">
             <div className="rounded-[1.75rem] bg-card p-6 shadow-[0_1px_2px_rgba(20,20,30,0.04),0_12px_32px_-16px_rgba(20,20,30,0.16)] transition-shadow hover:shadow-[0_1px_2px_rgba(20,20,30,0.05),0_20px_40px_-16px_rgba(20,20,30,0.22)]">
               <img src={app.image} alt="" loading="lazy" className="mx-auto size-40 object-contain" />
               <Accordion type="single" collapsible className="mt-4">
@@ -115,6 +146,7 @@ export function MinistryApps({ heading = "Our Ministry Apps", viewMore }: { head
                 </AccordionItem>
               </Accordion>
             </div>
+            </TiltCard>
           </Reveal>
         ))}
       </div>
@@ -201,30 +233,42 @@ export function EventsCarousel({ items }: { items: { image: string; title: strin
   );
 }
 
-/** Paged photo gallery (8 per page, numbered pagination with Prev/Next), styled as rounded photo tiles. */
+/** Paged photo gallery (8 per page, numbered pagination). Columns drift at different speeds while scrolling; tiles tilt on hover. */
 export function Gallery({ images, perPage = 8 }: { images: string[]; perPage?: number }) {
   const [page, setPage] = useState(1);
   const pages = Math.ceil(images.length / perPage);
   const slice = images.slice((page - 1) * perPage, page * perPage);
   const pageBtn = "grid size-10 place-items-center rounded-full text-sm font-semibold transition-colors";
+  const listRef = useRef<HTMLUListElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start end", "end start"] });
+  const drift = [
+    useTransform(scrollYProgress, [0, 1], [50, -50]),
+    useTransform(scrollYProgress, [0, 1], [-10, 10]),
+    useTransform(scrollYProgress, [0, 1], [70, -70]),
+    useTransform(scrollYProgress, [0, 1], [0, 20]),
+  ];
 
   return (
     <div>
-      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <ul ref={listRef} className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {slice.map((src, i) => (
           <motion.li
             key={src}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-            className="group overflow-hidden rounded-[1.25rem] bg-secondary"
+            initial={{ opacity: 0, y: 24, scale: 0.94 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img src={src} alt="" loading="lazy" className="aspect-[10/7] size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <motion.div {...(reduce ? {} : { style: { y: drift[i % 4]! } })}>
+              <TiltCard className="group overflow-hidden rounded-[1.25rem] bg-secondary" max={6}>
+                <img src={src} alt="" loading="lazy" className="aspect-[10/7] size-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              </TiltCard>
+            </motion.div>
           </motion.li>
         ))}
       </ul>
       {pages > 1 ? (
-        <nav aria-label="Gallery pages" className="mt-8 flex flex-wrap items-center justify-center gap-2">
+        <nav aria-label="Gallery pages" className="mt-14 flex flex-wrap items-center justify-center gap-2">
           {page > 1 ? (
             <button type="button" onClick={() => setPage(page - 1)} className="rounded-full px-4 py-2 text-sm font-semibold hover:bg-secondary">
               Prev
@@ -271,7 +315,20 @@ export function CountdownTiles({ target }: { target: Date }) {
     <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4" aria-label="Countdown">
       {units.map((u) => (
         <li key={u.label} className="rounded-3xl border border-deep-foreground/20 bg-deep-foreground/5 p-4 text-center">
-          <span className="block font-display text-4xl font-black tabular-nums text-accent sm:text-5xl">{String(u.value).padStart(u.pad, "0")}</span>
+          <span className="relative block h-[1.2em] overflow-hidden font-display text-4xl font-black tabular-nums text-accent sm:text-5xl">
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.span
+                key={u.value}
+                className="block"
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {String(u.value).padStart(u.pad, "0")}
+              </motion.span>
+            </AnimatePresence>
+          </span>
           <span className="mt-1 block text-xs uppercase text-deep-foreground/70">{u.label}</span>
         </li>
       ))}

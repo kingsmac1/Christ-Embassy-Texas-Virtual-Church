@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { HeroReveal } from "./motion";
+import { useMagnetic } from "./fx";
 
 export function Eyebrow({ children, tone = "dark" }: { children: ReactNode; tone?: "dark" | "light" }) {
   return (
@@ -41,8 +42,9 @@ export function PillLink({
   children,
   ...rest
 }: PillProps & ComponentProps<typeof Link>) {
+  const ref = useMagnetic<HTMLAnchorElement>();
   return (
-    <Link className={cn(pillBase, pillVariants[variant], className)} {...rest}>
+    <Link ref={ref} className={cn(pillBase, pillVariants[variant], className)} {...rest}>
       {children}
     </Link>
   );
@@ -54,8 +56,9 @@ export function PillButton({
   children,
   ...rest
 }: PillProps & ComponentProps<"button">) {
+  const ref = useMagnetic<HTMLButtonElement>();
   return (
-    <button className={cn(pillBase, pillVariants[variant], className)} {...rest}>
+    <button ref={ref} className={cn(pillBase, pillVariants[variant], className)} {...rest}>
       {children}
     </button>
   );
@@ -163,8 +166,9 @@ export function PillAnchor({
   ...rest
 }: PillProps & ComponentProps<"a">) {
   const external = rest.target === "_blank";
+  const ref = useMagnetic<HTMLAnchorElement>();
   return (
-    <a className={cn(pillBase, pillVariants[variant], className)} {...(external ? { rel: "noopener noreferrer" } : {})} {...rest}>
+    <a ref={ref} className={cn(pillBase, pillVariants[variant], className)} {...(external ? { rel: "noopener noreferrer" } : {})} {...rest}>
       {children}
     </a>
   );

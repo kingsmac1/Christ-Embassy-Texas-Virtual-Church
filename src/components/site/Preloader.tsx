@@ -14,7 +14,12 @@ export function Preloader() {
     const tick = window.setInterval(() => {
       setProgress((p) => (p >= 100 ? 100 : Math.min(100, p + Math.random() * 22)));
     }, 180);
-    const wipe = window.setTimeout(() => setWiping(true), 1400);
+    const wipe = window.setTimeout(() => {
+      setWiping(true);
+      // Tell the page animations they can start (they wait for the curtain).
+      document.documentElement.dataset["ready"] = "1";
+      window.dispatchEvent(new Event("site:ready"));
+    }, 1400);
     const finish = window.setTimeout(() => setDone(true), 2300);
     return () => {
       window.clearInterval(tick);

@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { Reveal } from "@/components/site/motion";
 import { ClosingBand, MinistryApps, PageHero, RichText, splitParagraphs } from "@/components/site/sections";
+import { ParallaxImage, ScrollWords, SplitReveal, TiltCard } from "@/components/site/fx";
 import { Section } from "@/components/site/ui";
 import { CONTENT, type Block } from "@/data/content";
 import { seoHead } from "@/data/seo";
@@ -41,21 +43,23 @@ function AboutPage() {
       <PageHero title={title.html} />
 
       <Section tone="cream">
-        <Reveal className="mx-auto max-w-3xl space-y-5 text-center text-base leading-relaxed text-muted-foreground">
+        <ScrollWords as="div" from={0.18} className="mx-auto max-w-3xl space-y-5 text-center text-lg leading-relaxed text-foreground sm:text-xl">
           {intro.map((p) => (
-            <RichText key={p.slice(0, 40)} html={p} className="[&_strong]:text-foreground" />
+            <RichText key={p.slice(0, 40)} html={p} />
           ))}
-        </Reveal>
+        </ScrollWords>
       </Section>
 
       {/* VISION, MISSION & PURPOSE: numbered editorial list */}
       <Section tone="white">
         <Reveal>
-          <h2 className="text-center text-4xl font-semibold sm:text-5xl" dangerouslySetInnerHTML={{ __html: visionHeading.html }} />
+          <SplitReveal as="h2" className="text-center text-4xl font-semibold sm:text-6xl">
+            {visionHeading.html.replace(/&amp;/g, "&")}
+          </SplitReveal>
         </Reveal>
         <ul className="mx-auto mt-12 max-w-3xl divide-y divide-border border-t border-border">
           {visionItems.map((p, i) => (
-            <Reveal key={p.html.slice(0, 30)} as="li" delay={i * 0.06}>
+            <Reveal key={p.html.slice(0, 30)} as="li" delay={i * 0.06} x={i % 2 === 0 ? -50 : 50} y={0}>
               <div className="grid gap-2 py-6 sm:grid-cols-[auto_1fr] sm:items-baseline sm:gap-8">
                 <span className="font-display text-3xl font-semibold text-accent">{String(i + 1).padStart(2, "0")}</span>
                 <RichText html={p.html} className="text-lg leading-relaxed [&_strong]:font-display [&_strong]:font-semibold" />
@@ -69,26 +73,31 @@ function AboutPage() {
       <Section tone="cream">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <Reveal className="lg:sticky lg:top-28">
-            <div className="overflow-hidden rounded-[2rem]">
-              <img src={presidentBg.src} alt="" loading="lazy" className="h-[28rem] w-full object-cover object-top sm:h-[38rem]" />
-            </div>
+            <ParallaxImage src={presidentBg.src} className="h-[28rem] rounded-[2rem] sm:h-[38rem]" imgClassName="object-top" strength={6} />
           </Reveal>
           <Reveal delay={0.12} className="rounded-[2rem] bg-deep p-8 text-deep-foreground sm:p-10">
-            <h2 className="text-4xl font-semibold sm:text-5xl">{presidentHeading.html}</h2>
+            <SplitReveal as="h2" className="text-4xl font-semibold sm:text-5xl">{presidentHeading.html}</SplitReveal>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-deep-foreground/80 sm:text-base">
               {presidentIntro.map((p) => (
                 <RichText key={p.html.slice(0, 30)} html={p.html} tone="dark" />
               ))}
             </div>
             {subSections.map((s) => (
-              <div key={s.heading} className="mt-8 border-t border-deep-foreground/15 pt-6">
+              <motion.div
+                key={s.heading}
+                className="mt-8 border-t border-deep-foreground/15 pt-6"
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <h3 className="text-2xl font-semibold text-accent">{s.heading}</h3>
                 <div className="mt-3 space-y-4 text-sm leading-relaxed text-deep-foreground/80 sm:text-base">
                   {s.paragraphs.map((p) => (
                     <RichText key={p.slice(0, 30)} html={p} tone="dark" />
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </Reveal>
         </div>

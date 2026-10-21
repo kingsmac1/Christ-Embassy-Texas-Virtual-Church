@@ -281,3 +281,35 @@
     font-weight: 700;
   }
 }
+
+/* Motion: text that is split into letters/words stays hidden until its animation is ready.
+   Only when JavaScript runs and the visitor has not asked for reduced motion, so the page is
+   always readable without either. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .fx-hide {
+    visibility: hidden;
+  }
+}
+
+.fx-hide .split-mask,
+[class*="line-mask"] {
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Lenis smooth scroll helpers */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}

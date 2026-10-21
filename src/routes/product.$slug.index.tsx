@@ -4,6 +4,7 @@ import { Check, Minus, Plus } from "lucide-react";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Reveal } from "@/components/site/motion";
 import { RichText } from "@/components/site/sections";
+import { SplitReveal, TiltCard } from "@/components/site/fx";
 import { PillButton, PillLink, Section } from "@/components/site/ui";
 import { formatPrice, getProduct } from "@/data/products";
 import { seoHead } from "@/data/seo";
@@ -32,12 +33,14 @@ function ProductPage() {
       <Section tone="cream">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
-            <div className="grid aspect-square place-items-center overflow-hidden rounded-[2rem] bg-deep p-10 shadow-[0_20px_60px_-20px_rgba(20,20,30,0.45)]">
-              <img src={product.images[0]} alt={product.name} className="size-full object-contain" />
-            </div>
+            <TiltCard className="rounded-[2rem]" max={10}>
+              <div className="grid aspect-square place-items-center overflow-hidden rounded-[2rem] bg-deep p-10 shadow-[0_20px_60px_-20px_rgba(20,20,30,0.45)]">
+                <img src={product.images[0]} alt={product.name} className="size-full animate-[float_6s_ease-in-out_infinite] object-contain [transform:translateZ(50px)]" />
+              </div>
+            </TiltCard>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="text-4xl font-semibold sm:text-5xl">{product.name}</h1>
+            <SplitReveal as="h1" by="words" waitForPreloader className="text-4xl font-semibold sm:text-5xl">{product.name}</SplitReveal>
             <p className="mt-4 text-2xl font-bold">
               {onSale ? (
                 <>

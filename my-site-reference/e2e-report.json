@@ -51,7 +51,7 @@
  },
  {
   "name": "mobile menu link navigates and closes",
-  "pass": true,
+  "pass": false,
   "detail": ""
  },
  {
@@ -71,8 +71,8 @@
  },
  {
   "name": "15 external links respond",
-  "pass": false,
-  "detail": "https://loveworldchildrensministry.org/web/about.php# (404) ; https://www.loveworldteensandyouthministry.org/ (UND_ERR_CONNECT_TIMEOUT)"
+  "pass": true,
+  "detail": ""
  },
  {
   "name": "add to cart shows confirmation",

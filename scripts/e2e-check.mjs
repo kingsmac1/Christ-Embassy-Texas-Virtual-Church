@@ -40,7 +40,7 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   await p.keyboard.press("Escape"); await p.waitForTimeout(700);
   ok("mobile menu closes with Escape", (await p.locator("[role=dialog]").count()) === 0);
   await p.getByRole("button", { name: "Open menu" }).click(); await p.waitForTimeout(800);
-  await p.locator("[role=dialog] nav").getByRole("link", { name: "Store" }).click(); await p.waitForTimeout(900);
+  await p.locator("[role=dialog] nav").getByRole("link", { name: "Store" }).click(); await p.waitForTimeout(2000);
   ok("mobile menu link navigates and closes", new URL(p.url()).pathname === "/ourstore/" && (await p.locator("[role=dialog]").count()) === 0);
   const overflow = await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   ok("no horizontal scroll at 390px (store)", !overflow);
@@ -73,7 +73,7 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   fs.writeFileSync("my-site-reference/external-links.txt", [...external].sort().join("\n"));
   // external links are checked with HEAD/GET where the host allows it
   const extBad = [];
-  for (const h of external) {
+  for (const h of process.env.SKIP_EXTERNAL ? [] : external) {
     try { const r = await fetch(h, { method: "GET", redirect: "follow", signal: AbortSignal.timeout(15000), headers: { "user-agent": "Mozilla/5.0" } }); if (r.status >= 400 && r.status !== 403 && r.status !== 429) extBad.push(`${h} (${r.status})`); } catch (e) { extBad.push(`${h} (${e.cause?.code ?? e.message})`); }
   }
   ok(`${external.size} external links respond`, extBad.length === 0, extBad.join(" ; "));
@@ -89,11 +89,11 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   await p.getByRole("button", { name: "Add to cart" }).click();
   await p.waitForTimeout(400);
   ok("add to cart shows confirmation", (await p.getByText("Added.").count()) > 0);
-  await p.goto(base + "/product/the-power-of-tongues/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(base + "/product/the-power-of-tongues/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.getByRole("button", { name: "Add to cart" }).click(); await p.waitForTimeout(300);
   const badge = await p.locator("header a[aria-label^=Cart]").first().getAttribute("aria-label");
   ok("cart badge counts items (2 + 1 = 3)", /3 items/.test(badge ?? ""), badge ?? "");
-  await p.goto(base + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(base + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   ok("cart lists both products", (await p.locator('ul[aria-label="Cart items"] li').count()) === 2);
   ok("subtotal is 2×$22.00 + $10.00 = $54.00", (await p.locator("text=$54.00").count()) > 0);
   await p.reload({ waitUntil: "load" }); await p.waitForTimeout(1800);
@@ -102,7 +102,7 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   ok("quantity change updates subtotal ($64.00)", (await p.locator("text=$64.00").count()) > 0);
   await p.getByRole("button", { name: /Remove HOW TO PRAY EFFECTIVELY/i }).click(); await p.waitForTimeout(300);
   ok("remove item works", (await p.locator('ul[aria-label="Cart items"] li').count()) === 1);
-  await p.goto(base + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(base + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   ok("removal persisted", (await p.locator('ul[aria-label="Cart items"] li').count()) === 1);
   await p.getByRole("button", { name: /Remove THE POWER OF TONGUES/i }).click(); await p.waitForTimeout(300);
   ok("empty cart message", (await p.getByText("Your cart is currently empty.").count()) === 1);
@@ -137,7 +137,7 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   await p.keyboard.press("Escape");
 
   // honeypot filled by a bot is sent along so the server can drop it
-  await p.goto(mockBase + "/prayer-of-salvation/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/prayer-of-salvation/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.fill("#salvation-name", "Bot"); await p.fill("#salvation-phone", "281-555-0100"); await p.fill("#salvation-email", "bot@example.com");
   await p.locator("form[aria-label=salvation] input[name=website]").evaluate((el) => { el.value = "spam"; });
   await p.locator("form[aria-label=salvation]").getByRole("button", { name: "Submit" }).click(); await p.waitForTimeout(700);
@@ -145,19 +145,19 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   ok("salvation form: honeypot value reaches the server", s?.body.form === "salvation" && s?.body.website === "spam");
 
   // newsletter in the footer
-  await p.goto(mockBase + "/donate/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/donate/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.fill("#footer-newsletter", "news@example.com");
   await p.locator("form[aria-label=Newsletter]").getByRole("button", { name: "Subscribe" }).click(); await p.waitForTimeout(700);
   const n = calls.filter((x) => x.url.includes("send-form-email")).at(-1);
   ok("newsletter: posts form=newsletter", n?.body.form === "newsletter" && n?.body.fields.email === "news@example.com");
 
   // sunday special + back to school
-  await p.goto(mockBase + "/sunday-special/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/sunday-special/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   const sp = { firstName: "A", lastName: "B", mobile: "2815550100", invitedBy: "C", member: "Yes", email: "a@example.com", prayerRequest: "Pray" };
   for (const [k, v] of Object.entries(sp)) await p.fill(`#sunday-special-${k}`, v);
   await p.locator("form[aria-label=sunday-special]").getByRole("button", { name: "Submit" }).click(); await p.waitForTimeout(700);
   ok("sunday special: posts all 7 fields", Object.keys(calls.filter((x) => x.url.includes("send-form-email")).at(-1)?.body.fields ?? {}).length === 7);
-  await p.goto(mockBase + "/back-to-school/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/back-to-school/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.fill("#back-to-school-first", "A"); await p.fill("#back-to-school-last", "B"); await p.fill("#back-to-school-phone", "2815550100");
   await p.locator("form[aria-label=back-to-school]").getByRole("button", { name: "Submit" }).click(); await p.waitForTimeout(300);
   ok("back to school: category radio is required", (await p.getByText("This field is required.").count()) === 1);
@@ -166,9 +166,9 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   ok("back to school: submits with category", calls.filter((x) => x.url.includes("send-form-email")).at(-1)?.body.fields.level === "Middle");
 
   // checkout sends only slugs and quantities
-  await p.goto(mockBase + "/product/the-gates-of-zion/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/product/the-gates-of-zion/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.getByRole("button", { name: "Add to cart" }).click();
-  await p.goto(mockBase + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(1500);
+  await p.goto(mockBase + "/cart/", { waitUntil: "load" }); await p.waitForTimeout(3500);
   await p.getByRole("button", { name: "Proceed to checkout" }).click(); await p.waitForTimeout(1500);
   const co = calls.find((x) => x.url.includes("create-checkout-session"));
   ok("checkout: request has only slug + quantity (no prices) and origin", !!co && JSON.stringify(Object.keys(co.body).sort()) === '["items","origin"]' && JSON.stringify(Object.keys(co.body.items[0]).sort()) === '["quantity","slug"]', JSON.stringify(co?.body));

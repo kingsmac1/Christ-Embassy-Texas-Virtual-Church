@@ -8,6 +8,7 @@ import { Preloader } from "@/components/site/Preloader";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { PageTransition, SmoothScroll } from "@/components/site/motion";
+import { RouteCurtain, ScrollProgress, ScrollRefresh } from "@/components/site/fx";
 import { PillLink } from "@/components/site/ui";
 
 function NotFoundComponent() {
@@ -79,8 +80,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Lets the stylesheet know scripts run, so split-text animations may hide text until they start. */}
+        <script dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js');setTimeout(function(){document.querySelectorAll('.fx-hide').forEach(function(e){e.classList.remove('fx-hide')})},7000)",
+          }} />
         <HeadContent />
       </head>
       <body>
@@ -98,9 +104,14 @@ function RootComponent() {
       <CartProvider>
         <Preloader />
         <SmoothScroll />
-        <div className="flex min-h-dvh flex-col overflow-x-hidden">
+        <ScrollProgress />
+        <RouteCurtain />
+        <ScrollRefresh />
+        {/* overflow-x-clip (not hidden) so position: sticky keeps working inside. */}
+        <div className="flex min-h-dvh flex-col overflow-x-clip">
           <SiteHeader />
-          <main className="flex-1 overflow-x-hidden">
+          {/* The page slides up over the footer, which stays pinned underneath (large screens). */}
+          <main className="relative z-10 flex-1 overflow-x-clip bg-background lg:rounded-b-[2.5rem] lg:shadow-[0_30px_60px_-20px_rgba(8,12,24,0.5)]">
             <PageTransition>
               <Outlet />
             </PageTransition>

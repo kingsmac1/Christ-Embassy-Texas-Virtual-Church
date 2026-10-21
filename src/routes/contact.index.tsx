@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Bokeh } from "@/components/site/Bokeh";
 import { Reveal } from "@/components/site/motion";
 import { ClosingBand, PageHero } from "@/components/site/sections";
+import { PointerGlow, SplitReveal, TiltCard } from "@/components/site/fx";
 import { SiteForm } from "@/components/site/SiteForm";
 import { Section } from "@/components/site/ui";
 import { CONTACT_FIELDS } from "@/data/forms";
@@ -39,25 +40,26 @@ function ContactPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {cards.map((c, i) => (
             <Reveal key={c.heading} delay={i * 0.08}>
-              <div className="h-full rounded-[1.75rem] border border-border bg-card p-7 text-center shadow-[0_1px_2px_rgba(20,20,30,0.04),0_12px_32px_-16px_rgba(20,20,30,0.16)]">
+              <TiltCard className="h-full rounded-[1.75rem]"><div className="h-full rounded-[1.75rem] border border-border bg-card p-7 text-center shadow-[0_1px_2px_rgba(20,20,30,0.04),0_12px_32px_-16px_rgba(20,20,30,0.16)]">
                 <span className="mx-auto grid size-14 place-items-center rounded-full bg-secondary text-accent">
                   <c.icon className="size-6" aria-hidden="true" />
                 </span>
                 <h4 className="mt-5 font-display text-xl font-semibold">{c.heading}</h4>
                 <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
-              </div>
+              </div></TiltCard>
             </Reveal>
           ))}
         </div>
       </Section>
 
       <section className="relative overflow-hidden bg-deep py-20 text-deep-foreground sm:py-28">
+        <PointerGlow />
         <Bokeh />
         <div className="container-site relative grid items-start gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal>
-            <h2 className="text-4xl font-semibold sm:text-5xl">{formHeading.html}</h2>
-          </Reveal>
-          <Reveal delay={0.1} className="rounded-[2rem] bg-card p-7 text-foreground sm:p-9">
+          <div className="lg:sticky lg:top-32">
+            <SplitReveal as="h2" className="text-4xl font-semibold sm:text-6xl">{formHeading.html}</SplitReveal>
+          </div>
+          <Reveal delay={0.1} x={60} y={0} className="rounded-[2rem] bg-card p-7 text-foreground sm:p-9">
             <SiteForm form="contact" fields={CONTACT_FIELDS} submitLabel="Submit" successTitle="Message sent!" successMessage="Thank you for contacting us. Your message has been received." />
           </Reveal>
         </div>

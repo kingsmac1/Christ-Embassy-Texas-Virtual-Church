@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 import { Reveal } from "@/components/site/motion";
 import { PageHero, RichText } from "@/components/site/sections";
 import { SiteForm } from "@/components/site/SiteForm";
+import { ScrollWords, SplitReveal } from "@/components/site/fx";
 import { Section } from "@/components/site/ui";
 import { CONTENT, type Block } from "@/data/content";
 import { SALVATION_FIELDS } from "@/data/forms";
@@ -31,7 +32,9 @@ function SalvationPage() {
           <Sparkles className="size-6 text-accent" aria-hidden="true" />
           <RichText html={lead!.html} className="mt-4 text-xs font-bold tracking-wide text-accent uppercase" />
           <blockquote className="mt-5 rounded-3xl bg-secondary p-6 sm:p-8">
-            <RichText html={prayer!.html} className="font-display text-xl leading-relaxed sm:text-2xl" />
+            <ScrollWords as="p" from={0.2} className="font-display text-xl leading-relaxed sm:text-3xl">
+              {prayer!.html.replace(/<[^>]+>/g, "")}
+            </ScrollWords>
           </blockquote>
         </Reveal>
       </Section>
@@ -39,7 +42,7 @@ function SalvationPage() {
       <Section tone="white">
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_1fr]">
           <Reveal>
-            <h2 className="text-4xl font-semibold sm:text-5xl">{congrats!.html}</h2>
+            <SplitReveal as="h2" className="text-4xl font-semibold sm:text-6xl">{congrats!.html}</SplitReveal>
             <div className="mt-5 space-y-3 text-base leading-relaxed text-muted-foreground">
               {thanksParagraphs.map((p) => (
                 <RichText key={p.html.slice(0, 30)} html={p.html} />

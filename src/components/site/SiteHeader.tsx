@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Menu, ShoppingCart, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { NAV_LINKS, SITE } from "@/data/site";
 import { useCart } from "@/lib/cart";
 import { PillLink } from "./ui";
@@ -49,6 +49,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
+  // Slides away while reading down the page, comes back on the first scroll up; gets a frosted look once scrolled.
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(y > 24);
+    setHidden(y > prev && y > 280 && !open);
+  });
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -65,7 +75,11 @@ export function SiteHeader() {
   const mainLinks = NAV_LINKS.filter((l) => l.label !== "Donate");
 
   return (
-    <header className="sticky top-0 z-50 bg-deep text-deep-foreground">
+    <motion.header
+      animate={{ y: hidden ? "-100%" : "0%" }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className={`sticky top-0 z-50 text-deep-foreground transition-[background-color,backdrop-filter,box-shadow] duration-300 ${scrolled ? "bg-deep/80 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl" : "bg-deep"}`}
+    >
       <div className="container-site grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3">
         <Link to="/" className="flex min-w-0 items-center" aria-label={`${SITE.name} home`}>
           <img src={logo} alt={SITE.name} className="size-12 shrink-0 object-contain" />
@@ -166,6 +180,6 @@ export function SiteHeader() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { HandHeart } from "lucide-react";
 import { Reveal } from "@/components/site/motion";
 import { PageHero, RichText } from "@/components/site/sections";
+import { ScrollWords } from "@/components/site/fx";
 import { PillAnchor, Section } from "@/components/site/ui";
 import { CONTENT, type Block } from "@/data/content";
 import { seoHead } from "@/data/seo";
@@ -24,7 +25,9 @@ function DonatePage() {
       <Section tone="cream">
         <Reveal className="mx-auto max-w-3xl rounded-[2rem] border border-border bg-card p-8 text-center shadow-[0_20px_60px_-20px_rgba(20,20,30,0.2)] sm:p-12">
           <HandHeart className="mx-auto size-8 text-accent" aria-hidden="true" />
-          <RichText html={verse!.html} className="mt-6 font-display text-xl leading-snug sm:text-2xl" />
+          <ScrollWords as="p" from={0.2} className="mt-6 font-display text-xl leading-snug sm:text-3xl">
+            {verse!.html.replace(/<[^>]+>/g, "")}
+          </ScrollWords>
           <RichText html={ref!.html} className="mt-5 text-sm text-muted-foreground" />
           <div className="mt-8">
             <PillAnchor href={button.href} target={button.target} variant="accent">

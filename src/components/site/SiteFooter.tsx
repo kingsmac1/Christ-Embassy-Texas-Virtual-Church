@@ -35,7 +35,7 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="bg-deep text-deep-foreground">
+    <footer className="bg-deep text-deep-foreground lg:sticky lg:bottom-0 lg:z-0">
       <div className="container-site grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1.2fr]">
         <div>
           <img src="/logo.png" alt="" className="size-24 object-contain" />

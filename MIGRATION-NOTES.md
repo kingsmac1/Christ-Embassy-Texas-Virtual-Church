@@ -137,3 +137,13 @@ All data lives in `src/data/products.ts` (`stripePriceId` empty on purpose). The
 - Checks (with the dev server on :5200, and a second one on :5201 started with fake `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`): `npm run check:content`, `npm run check:layout`, `npm run check:e2e`; functions: `deno run -A --no-check scripts/test-functions.ts`.
 - Regenerate data from the WordPress export: `npm run build:data`; copy shared function code: `npm run sync:functions`.
 - Last full run: content 624/624 items, layout 45 pages × 2 widths clean, e2e 36/37 (the one "failure" is two external links that are already dead/unreachable on the original site), functions all passed, production build OK, content check also passes against the Cloudflare-runtime preview.
+
+## Motion layer (added after the first build)
+Libraries: `motion` 14 (Framer Motion's successor), `gsap` 3.15 with ScrollTrigger + SplitText, `lenis` smooth scroll (driven by GSAP's ticker so they stay in sync). Everything lives in `src/components/site/fx.tsx`, `motion.tsx`, `src/lib/gsap.ts`. All of it switches off for visitors who ask for reduced motion, and text only hides before its animation when scripts run (a 7s safety timer reveals it anyway).
+- **Entry:** letter-by-letter mask reveals on headings (`SplitReveal`), preloader hands over to hero animations, hero portrait rises in, route curtain sweeps on every page change.
+- **Pinned / layered scroll:** home hero stays fixed while the page slides up over it; "Upcoming Events" is a pinned sideways scroll (large screens; swipe carousel elsewhere); Healing Streams / Prayathon / Unending Praise stack and slide over each other, covered ones shrink and dim; the footer stays fixed underneath and is revealed as the page ends.
+- **Parallax:** hero photo + portrait, page banners, ministry/president photos (revealed through an expanding mask), gallery columns drifting at different speeds, closing-band rings that grow and turn.
+- **Scroll-scrubbed text:** "A Church For You", the About intro, the Salvation prayer and the donate verse light up word by word as you scroll.
+- **Pointer effects:** magnetic buttons, 3D tilt + glare on cards/products/gallery/videos, pointer-following light in dark sections.
+- **Extras:** scroll progress bar, header hides on scroll down / returns on scroll up with a frosted look, countdown digits roll.
+Re-verified after the change: content 624/624, layout 45 pages × 2 widths clean, e2e 36/37 (only the two dead original links), production build and Cloudflare-runtime preview OK.
