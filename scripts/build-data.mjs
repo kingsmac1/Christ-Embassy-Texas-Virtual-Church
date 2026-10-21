@@ -8,7 +8,7 @@ const imgMap = JSON.parse(fs.readFileSync(`${R}/images-map.json`, "utf8")).map;
 const local = (u) => {
   const name = imgMap[u] ?? imgMap[u.replace(/-\d+x\d+(\.\w+)$/, "$1")];
   if (!name) throw new Error("no local image for " + u);
-  return "/images/" + name;
+  return "/images/" + name.replace(/\.\w+$/, ".webp");
 };
 const decode = (s) => cheerio.load(`<div>${s}</div>`)("div").text();
 

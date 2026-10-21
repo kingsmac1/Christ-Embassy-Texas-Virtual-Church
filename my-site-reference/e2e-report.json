@@ -51,11 +51,41 @@
  },
  {
   "name": "mobile menu link navigates and closes",
-  "pass": false,
+  "pass": true,
   "detail": ""
  },
  {
   "name": "no horizontal scroll at 390px (store)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "mobile menu covers the full screen after scrolling",
+  "pass": true,
+  "detail": "{\"x\":0,\"y\":0,\"width\":390,\"height\":844}"
+ },
+ {
+  "name": "mobile menu (scrolled) navigates and closes",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "gallery photo opens a lightbox",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "lightbox: arrow key goes to the next photo",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "lightbox: wraps from first to last photo",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "lightbox: Escape closes it",
   "pass": true,
   "detail": ""
  },

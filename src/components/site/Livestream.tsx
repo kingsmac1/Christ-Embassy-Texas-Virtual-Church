@@ -28,7 +28,7 @@ export function LivestreamPlayer() {
           />
         ) : (
           <div className="absolute inset-0">
-            <img src="/images/2023__10__Audience.png" alt="" className="size-full object-cover opacity-35" loading="lazy" />
+            <img src="/images/2023__10__Audience.webp" alt="" className="size-full object-cover opacity-35" loading="lazy" />
             <div className="absolute inset-0 grid place-items-center p-6 text-center text-deep-foreground">
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full border border-deep-foreground/25 px-3 py-1 text-xs font-semibold uppercase">

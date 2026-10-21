@@ -75,6 +75,7 @@ export function SiteHeader() {
   const mainLinks = NAV_LINKS.filter((l) => l.label !== "Donate");
 
   return (
+    <>
     <motion.header
       animate={{ y: hidden ? "-100%" : "0%" }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -122,6 +123,9 @@ export function SiteHeader() {
         </div>
       </div>
 
+    </motion.header>
+
+      {/* Outside the header on purpose: the header has a transform/backdrop-filter, which would make this fixed overlay only as big as the header. */}
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -180,6 +184,6 @@ export function SiteHeader() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }

@@ -9,7 +9,8 @@ import { MINISTRY_APPS } from "@/data/apps";
 import { cn } from "@/lib/utils";
 import { Bokeh } from "./Bokeh";
 import { HeroReveal, Reveal } from "./motion";
-import { ParallaxImage, PointerGlow, ScrollWords, SplitReveal, TiltCard } from "./fx";
+import { Lightbox } from "./Lightbox";
+import { ParallaxImage, PointerGlow, ScrollWords, SplitReveal, TiltCard, useScrollFx } from "./fx";
 import { PillAnchor, PillLink, Section } from "./ui";
 
 /** Renders HTML that was written on the original WordPress page (bold, links, line breaks). */
@@ -39,14 +40,14 @@ export function splitParagraphs(html: string): string[] {
 /** Dark page banner with the page title. The photo drifts and zooms as you scroll away, the title rises letter by letter. */
 export function PageHero({
   title,
-  image = "/images/2023__10__Audience.png",
+  image = "/images/2023__10__Audience.webp",
   children,
 }: {
   title: ReactNode;
   image?: string | null;
   children?: ReactNode;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = !useScrollFx();
   const { scrollY } = useScroll();
   const imgY = useTransform(scrollY, [0, 700], [0, 220]);
   const imgScale = useTransform(scrollY, [0, 700], [1, 1.28]);
@@ -82,7 +83,7 @@ export function PageHero({
 /** Closing dark band: two big rings expand and turn as it scrolls into view behind a letter-by-letter heading. */
 export function ClosingBand({ heading, buttonLabel, to }: { heading: string; buttonLabel: string; to: string }) {
   const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = !useScrollFx();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const ringScale = useTransform(scrollYProgress, [0, 1], [0.5, 1.6]);
   const ringRotate = useTransform(scrollYProgress, [0, 1], [-40, 140]);
@@ -236,11 +237,12 @@ export function EventsCarousel({ items }: { items: { image: string; title: strin
 /** Paged photo gallery (8 per page, numbered pagination). Columns drift at different speeds while scrolling; tiles tilt on hover. */
 export function Gallery({ images, perPage = 8 }: { images: string[]; perPage?: number }) {
   const [page, setPage] = useState(1);
+  const [open, setOpen] = useState<number | null>(null);
   const pages = Math.ceil(images.length / perPage);
   const slice = images.slice((page - 1) * perPage, page * perPage);
   const pageBtn = "grid size-10 place-items-center rounded-full text-sm font-semibold transition-colors";
   const listRef = useRef<HTMLUListElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = !useScrollFx();
   const { scrollYProgress } = useScroll({ target: listRef, offset: ["start end", "end start"] });
   const drift = [
     useTransform(scrollYProgress, [0, 1], [50, -50]),
@@ -261,7 +263,14 @@ export function Gallery({ images, perPage = 8 }: { images: string[]; perPage?: n
           >
             <motion.div {...(reduce ? {} : { style: { y: drift[i % 4]! } })}>
               <TiltCard className="group overflow-hidden rounded-[1.25rem] bg-secondary" max={6}>
-                <img src={src} alt="" loading="lazy" className="aspect-[10/7] size-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <button
+                  type="button"
+                  onClick={() => setOpen((page - 1) * perPage + i)}
+                  aria-label={`Open photo ${(page - 1) * perPage + i + 1} of ${images.length}`}
+                  className="block size-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <img src={src} alt="" loading="lazy" className="aspect-[10/7] size-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                </button>
               </TiltCard>
             </motion.div>
           </motion.li>
@@ -292,6 +301,7 @@ export function Gallery({ images, perPage = 8 }: { images: string[]; perPage?: n
           ) : null}
         </nav>
       ) : null}
+      <Lightbox images={images} index={open} onIndexChange={setOpen} onClose={() => setOpen(null)} />
     </div>
   );
 }

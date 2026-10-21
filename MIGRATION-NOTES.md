@@ -147,3 +147,9 @@ Libraries: `motion` 14 (Framer Motion's successor), `gsap` 3.15 with ScrollTrigg
 - **Pointer effects:** magnetic buttons, 3D tilt + glare on cards/products/gallery/videos, pointer-following light in dark sections.
 - **Extras:** scroll progress bar, header hides on scroll down / returns on scroll up with a frosted look, countdown digits roll.
 Re-verified after the change: content 624/624, layout 45 pages × 2 widths clean, e2e 36/37 (only the two dead original links), production build and Cloudflare-runtime preview OK.
+
+## Image optimisation, lightbox and mobile fixes
+- `node scripts/optimize-images.mjs` rebuilds every used image from the full-size originals in `my-site-reference/images` as resized WebP in `public/images` (76 images: 19.5 MB → 4.7 MB; logo/favicons shrunk as PNG). `build-content.mjs` / `build-data.mjs` now point at the `.webp` names. Originals are kept only in `my-site-reference/`.
+- Gallery photos open in a lightbox (arrows, ← → keys, swipe, Esc, counter) covering all 34 photos.
+- Mobile menu bug fixed: the header's transform/backdrop-filter made the fixed full-screen menu only as tall as the header; the menu now lives outside the header. Covered by an e2e check.
+- Scroll "shaking" on phones: JS-driven parallax runs a frame behind touch scrolling. Parallax/scroll-linked transforms are now used only with mouse/trackpad (`useScrollFx`); on touch the photos stay still while entrance animations remain.

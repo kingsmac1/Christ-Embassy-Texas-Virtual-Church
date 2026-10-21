@@ -14,7 +14,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -54,7 +54,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "bg",
-    "src": "/images/2023__11__Pastorchris.jpg"
+    "src": "/images/2023__11__Pastorchris.webp"
    },
    {
     "type": "heading",
@@ -140,7 +140,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Rhapsody-Logo.png",
+    "src": "/images/2023__11__Rhapsody-Logo.webp",
     "alt": ""
    },
    {
@@ -150,7 +150,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Loveworld-USA.png",
+    "src": "/images/2023__11__Loveworld-USA.webp",
     "alt": ""
    },
    {
@@ -193,7 +193,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2024__07__Back-to-School-Web-Banner.jpg"
+    "src": "/images/2024__07__Back-to-School-Web-Banner.webp"
    }
   ],
   [
@@ -292,7 +292,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -357,7 +357,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -460,7 +460,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -491,7 +491,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__10__Pastorchris1.png",
+    "src": "/images/2023__10__Pastorchris1.webp",
     "alt": ""
    }
   ],
@@ -515,7 +515,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__10__Sunday-Service-E-card.jpg",
+    "src": "/images/2023__10__Sunday-Service-E-card.webp",
     "alt": ""
    },
    {
@@ -530,7 +530,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2024__12__Wednesday-Service-e-card-1.jpg",
+    "src": "/images/2024__12__Wednesday-Service-e-card-1.webp",
     "alt": ""
    },
    {
@@ -545,7 +545,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2024__12__Back-to-school-CE-Wilcrest-11.jpg",
+    "src": "/images/2024__12__Back-to-school-CE-Wilcrest-11.webp",
     "alt": ""
    },
    {
@@ -560,7 +560,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2024__07__Reachout-USA-1-scaled.jpg",
+    "src": "/images/2024__07__Reachout-USA-1-scaled.webp",
     "alt": ""
    },
    {
@@ -674,172 +674,172 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.52_5d366595.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.52_5d366595.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5741.jpg",
+    "src": "/images/2024__12__0S2B5741.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_1ecfc53c.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_1ecfc53c.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_f72173c0.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_f72173c0.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5786.jpg",
+    "src": "/images/2024__12__0S2B5786.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__08__WhatsApp-Image-2024-07-25-at-13.56.25_07a3a06a.jpg",
+    "src": "/images/2024__08__WhatsApp-Image-2024-07-25-at-13.56.25_07a3a06a.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_706f63fd.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_706f63fd.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_868e5a1b.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_868e5a1b.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__08__WhatsApp-Image-2024-07-29-at-11.41.40_28f5bf48.jpg",
+    "src": "/images/2024__08__WhatsApp-Image-2024-07-29-at-11.41.40_28f5bf48.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__08__WhatsApp-Image-2024-07-27-at-04.13.00_19f42c23.jpg",
+    "src": "/images/2024__08__WhatsApp-Image-2024-07-27-at-04.13.00_19f42c23.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_d7f0948a.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_d7f0948a.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__08__WhatsApp-Image-2024-07-27-at-04.13.01_26c2ede2.jpg",
+    "src": "/images/2024__08__WhatsApp-Image-2024-07-27-at-04.13.01_26c2ede2.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_a90bcf86.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.50_a90bcf86.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_dfd53d64.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_dfd53d64.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_ee527daf.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_ee527daf.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5817.jpg",
+    "src": "/images/2024__12__0S2B5817.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__Reachout-USA-Today.jpg",
+    "src": "/images/2024__07__Reachout-USA-Today.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5804.jpg",
+    "src": "/images/2024__12__0S2B5804.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5747-1.jpg",
+    "src": "/images/2024__12__0S2B5747-1.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_d262657c.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.51_d262657c.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5698.jpg",
+    "src": "/images/2024__12__0S2B5698.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5666.jpg",
+    "src": "/images/2024__12__0S2B5666.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5733.jpg",
+    "src": "/images/2024__12__0S2B5733.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5668.jpg",
+    "src": "/images/2024__12__0S2B5668.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.52_cdc42976.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-01-at-17.44.52_cdc42976.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5795.jpg",
+    "src": "/images/2024__12__0S2B5795.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5688.jpg",
+    "src": "/images/2024__12__0S2B5688.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5693.jpg",
+    "src": "/images/2024__12__0S2B5693.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5740.jpg",
+    "src": "/images/2024__12__0S2B5740.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5645.jpg",
+    "src": "/images/2024__12__0S2B5645.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5622.jpg",
+    "src": "/images/2024__12__0S2B5622.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__WhatsApp-Image-2024-07-02-at-01.20.25_de2aa1c2.jpg",
+    "src": "/images/2024__07__WhatsApp-Image-2024-07-02-at-01.20.25_de2aa1c2.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__07__IMG_5764.jpg",
+    "src": "/images/2024__07__IMG_5764.webp",
     "alt": ""
    },
    {
     "type": "image",
-    "src": "/images/2024__12__0S2B5720.jpg",
+    "src": "/images/2024__12__0S2B5720.webp",
     "alt": ""
    },
    {
@@ -886,7 +886,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Rhapsody-Logo.png",
+    "src": "/images/2023__11__Rhapsody-Logo.webp",
     "alt": ""
    },
    {
@@ -896,7 +896,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Loveworld-USA.png",
+    "src": "/images/2023__11__Loveworld-USA.webp",
     "alt": ""
    },
    {
@@ -1042,7 +1042,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -1053,7 +1053,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "bg",
-    "src": "/images/2023__12__WhatsApp-Image-2023-12-19-at-16.47.17_db746e52.jpg"
+    "src": "/images/2023__12__WhatsApp-Image-2023-12-19-at-16.47.17_db746e52.webp"
    },
    {
     "type": "p",
@@ -1125,11 +1125,11 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "bg",
-    "src": "/images/2023__12__a41a9609-1600x900-2.jpg"
+    "src": "/images/2023__12__a41a9609-1600x900-2.webp"
    },
    {
     "type": "bg",
-    "src": "/images/2023__12__IMG_0791-1.jpg"
+    "src": "/images/2023__12__IMG_0791-1.webp"
    },
    {
     "type": "heading",
@@ -1175,11 +1175,11 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "bg",
-    "src": "/images/2023__11__rhap.png"
+    "src": "/images/2023__11__rhap.webp"
    },
    {
     "type": "bg",
-    "src": "/images/2023__11__03729a65-c187-4040-9b14-b105b819a08c.jpeg"
+    "src": "/images/2023__11__03729a65-c187-4040-9b14-b105b819a08c.webp"
    },
    {
     "type": "heading",
@@ -1216,7 +1216,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Rhapsody-Logo.png",
+    "src": "/images/2023__11__Rhapsody-Logo.webp",
     "alt": ""
    },
    {
@@ -1226,7 +1226,7 @@ export const CONTENT: Record<string, Block[][]> = {
    },
    {
     "type": "image",
-    "src": "/images/2023__11__Loveworld-USA.png",
+    "src": "/images/2023__11__Loveworld-USA.webp",
     "alt": ""
    },
    {
@@ -1269,7 +1269,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -1414,7 +1414,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2023__10__Audience.png"
+    "src": "/images/2023__10__Audience.webp"
    },
    {
     "type": "heading",
@@ -1584,7 +1584,7 @@ export const CONTENT: Record<string, Block[][]> = {
   [
    {
     "type": "sectionbg",
-    "src": "/images/2024__05__SuperSunday-Web-Banner-Wilcrest.jpg"
+    "src": "/images/2024__05__SuperSunday-Web-Banner-Wilcrest.webp"
    }
   ],
   [

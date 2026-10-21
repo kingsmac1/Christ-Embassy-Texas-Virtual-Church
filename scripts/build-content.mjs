@@ -6,7 +6,7 @@ const R = "my-site-reference";
 const imgMap = JSON.parse(fs.readFileSync(`${R}/images-map.json`, "utf8")).map;
 const localize = (u) => {
   const name = imgMap[u] ?? imgMap[u.replace(/-\d+x\d+(\.\w+)$/, "$1")];
-  return name ? "/images/" + name : u;
+  return name ? "/images/" + name.replace(/\.\w+$/, ".webp") : u;
 };
 const pages = {};
 for (const f of fs.readdirSync(`${R}/content-json`)) {

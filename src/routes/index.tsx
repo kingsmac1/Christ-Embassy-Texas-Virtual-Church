@@ -3,7 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { Bokeh } from "@/components/site/Bokeh";
 import { Reveal } from "@/components/site/motion";
 import { EventsCarousel, Gallery, MinistryApps, RichText, ClosingBand } from "@/components/site/sections";
-import { HorizontalScroll, ParallaxImage, PointerGlow, ScrollWords, SplitReveal, StackGroup, TiltCard } from "@/components/site/fx";
+import { HorizontalScroll, ParallaxImage, PointerGlow, ScrollWords, SplitReveal, StackGroup, TiltCard, useScrollFx } from "@/components/site/fx";
 import { Eyebrow, PillAnchor, PillLink, Section } from "@/components/site/ui";
 import { CONTENT, type Block } from "@/data/content";
 import { seoHead } from "@/data/seo";
@@ -60,7 +60,8 @@ function HomePage() {
   const closingHeading = pick(closingSec!, "heading")[0]!;
   const closingButton = pick(closingSec!, "button")[0]!;
 
-  const reduce = useReducedMotion();
+  const reduce = !useScrollFx();
+  const motionOff = useReducedMotion();
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 800], [0, 240]);
   const bgScale = useTransform(scrollY, [0, 800], [1, 1.3]);
@@ -84,7 +85,7 @@ function HomePage() {
   return (
     <>
       {/* HERO: stays pinned while the rest of the page slides up over it */}
-      <section className="sticky top-0 z-0 flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-deep text-deep-foreground">
+      <section className="z-0 flex min-h-[calc(100svh-4.5rem)] lg:sticky lg:top-0 items-center overflow-hidden bg-deep text-deep-foreground">
         {heroBg ? (
           <motion.img
             src={heroBg.src}
@@ -99,11 +100,9 @@ function HomePage() {
         {/* turning rings behind the portrait */}
         <div aria-hidden="true" className="pointer-events-none absolute top-1/2 right-[-8rem] -z-[5] size-[38rem] -translate-y-1/2 animate-[spin_60s_linear_infinite] rounded-full border border-dashed border-deep-foreground/15 lg:right-[4%]" />
         <div aria-hidden="true" className="pointer-events-none absolute top-1/2 right-[-3rem] -z-[5] size-[28rem] -translate-y-1/2 animate-[spin_40s_linear_infinite_reverse] rounded-full border border-accent/30 lg:right-[9%]" />
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[5] bg-deep"
-          {...(reduce ? {} : { style: { opacity: veil } })}
-        />
+        {reduce ? null : (
+          <motion.div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[5] bg-deep" style={{ opacity: veil }} />
+        )}
         <div className="container-site relative grid items-end gap-6 pt-20 lg:grid-cols-[1.2fr_0.8fr] lg:pt-24">
           <motion.div className="pb-16 lg:pb-28" {...(reduce ? {} : { style: { y: textY, opacity: textOpacity } })}>
             <Reveal delay={1.5}>
@@ -129,7 +128,7 @@ function HomePage() {
           {heroImage ? (
             <motion.div
               className="mx-auto w-full max-w-sm self-end lg:max-w-none"
-              initial={reduce ? false : { opacity: 0, y: 80, scale: 0.92 }}
+              initial={motionOff ? false : { opacity: 0, y: 80, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1.3, delay: 1.7, ease: [0.22, 1, 0.36, 1] }}
             >

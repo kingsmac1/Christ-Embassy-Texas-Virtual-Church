@@ -9,7 +9,7 @@ const norm = (s) => s.replace(/ /g, " ").replace(/[​]/g, "").replace(/\s+/g, 
 const plain = (html) => norm(html.replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/&#39;/g, "'").replace(/&quot;/g, '"'));
 const pathOf = (slug) => (slug === "home" ? "/" : slug.startsWith("product__") ? `/product/${slug.slice(9)}/` : `/${slug}/`);
 const rel = (v) => v.replace(/https?:\/\/(www\.)?christembassytexasvirtualchurch\.com(\/[^"]*)?/g, (_m, _w, p) => p || "/");
-const imgFile = (src) => src.split("/").pop();
+const imgFile = (src) => (src.split("/").pop() ?? "").replace(/\.\w+$/, "");
 
 // Text blocks that are rebuilt as UI (not copied verbatim) or intentionally replaced:
 const SKIP_TEXT = new Set(["000", "00", ":", "Day(s)", "Hour(s)", "Minute(s)", "Second(s)"]);

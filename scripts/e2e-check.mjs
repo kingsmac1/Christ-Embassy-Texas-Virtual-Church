@@ -47,6 +47,40 @@ const settle = async (p) => { await p.waitForLoadState("networkidle").catch(() =
   await ctx.close();
 }
 
+// ---- 2b. mobile menu after scrolling (header is frosted + animated then) covers the whole screen ----
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const p = await ctx.newPage();
+  await p.goto(base + "/our-ministry/", { waitUntil: "load" }); await settle(p);
+  await p.evaluate(() => window.scrollTo(0, 1500)); await p.waitForTimeout(800);
+  await p.evaluate(() => window.scrollTo(0, 1300)); await p.waitForTimeout(900); // scrolling up brings the header back
+  await p.getByRole("button", { name: "Open menu" }).tap(); await p.waitForTimeout(900);
+  const box = await p.locator("[role=dialog]").boundingBox();
+  ok("mobile menu covers the full screen after scrolling", !!box && box.height >= 840 && box.width >= 389, JSON.stringify(box));
+  await p.locator("[role=dialog] nav").getByRole("link", { name: "Contact" }).tap(); await p.waitForTimeout(2200);
+  ok("mobile menu (scrolled) navigates and closes", new URL(p.url()).pathname === "/contact/" && (await p.locator("[role=dialog]").count()) === 0);
+  await ctx.close();
+}
+
+// ---- 2c. gallery lightbox ----
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const p = await ctx.newPage();
+  await p.goto(base + "/", { waitUntil: "load" }); await settle(p);
+  const tile = p.getByRole("button", { name: /^Open photo 1 of/ });
+  await tile.scrollIntoViewIfNeeded(); await p.waitForTimeout(800);
+  await tile.click(); await p.waitForTimeout(900);
+  ok("gallery photo opens a lightbox", (await p.getByRole("dialog").count()) === 1 && (await p.getByText(/^1 \/ 34$/).count()) === 1);
+  await p.keyboard.press("ArrowRight"); await p.waitForTimeout(700);
+  ok("lightbox: arrow key goes to the next photo", (await p.getByText(/^2 \/ 34$/).count()) === 1);
+  await p.getByRole("button", { name: "Previous photo" }).click(); await p.waitForTimeout(700);
+  await p.getByRole("button", { name: "Previous photo" }).click(); await p.waitForTimeout(700);
+  ok("lightbox: wraps from first to last photo", (await p.getByText(/^34 \/ 34$/).count()) === 1);
+  await p.keyboard.press("Escape"); await p.waitForTimeout(800);
+  ok("lightbox: Escape closes it", (await p.getByRole("dialog").count()) === 0);
+  await ctx.close();
+}
+
 // ---- 3. internal links all resolve ----
 {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });

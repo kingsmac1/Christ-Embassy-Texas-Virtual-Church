@@ -85,7 +85,7 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* Lets the stylesheet know scripts run, so split-text animations may hide text until they start. */}
         <script dangerouslySetInnerHTML={{
             __html:
-              "document.documentElement.classList.add('js');setTimeout(function(){document.querySelectorAll('.fx-hide').forEach(function(e){e.classList.remove('fx-hide')})},7000)",
+              "document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.setAttribute('data-fx-fallback','')},7000)",
           }} />
         <HeadContent />
       </head>

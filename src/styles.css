@@ -289,6 +289,10 @@
   html.js .fx-hide {
     visibility: hidden;
   }
+  /* Safety net: if the animation code has not revealed the text after 7 seconds, show it anyway. */
+  html[data-fx-fallback] .fx-hide {
+    visibility: visible !important;
+  }
 }
 
 .fx-hide .split-mask,

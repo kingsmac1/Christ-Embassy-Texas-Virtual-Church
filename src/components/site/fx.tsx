@@ -136,6 +136,17 @@ export function ScrollWords({
 
 const fineHover = "(hover: hover) and (pointer: fine)";
 
+/**
+ * Scroll-linked parallax is driven from JavaScript, which on phones runs a frame behind the browser's own
+ * touch scrolling and makes elements visibly shake. So it is only used with a mouse/trackpad and when
+ * reduced motion is not requested; on touch screens those elements stay still (entrance animations remain).
+ */
+export function useScrollFx() {
+  const reduce = useReducedMotion();
+  const fine = useMediaQuery(fineHover);
+  return fine && !reduce;
+}
+
 /** Pulls its child toward the pointer (buttons). Disabled on touch and for reduced motion. */
 export function useMagnetic<T extends HTMLElement>(strength = 0.3) {
   const ref = useRef<T>(null);
@@ -267,6 +278,7 @@ export function ParallaxImage({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const scrollFx = useScrollFx();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [`-${strength}%`, `${strength}%`]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.22, 1.14, 1.22]);
@@ -285,7 +297,7 @@ export function ParallaxImage({
         alt={alt}
         loading={loading}
         className={cn("size-full object-cover", imgClassName)}
-        {...(reduce ? {} : { style: { y, scale } })}
+        {...(scrollFx ? { style: { y, scale } } : { style: { scale: 1.08 } })}
       />
     </motion.div>
   );
