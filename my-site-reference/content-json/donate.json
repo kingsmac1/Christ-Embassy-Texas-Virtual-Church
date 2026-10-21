@@ -1,0 +1,30 @@
+[
+ {
+  "type": "section"
+ },
+ {
+  "type": "sectionbg",
+  "src": "https://christembassytexasvirtualchurch.com/wp-content/uploads/2023/10/Audience.png"
+ },
+ {
+  "type": "heading",
+  "level": 1,
+  "html": "Donate"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Let each one [give] as he has made up his own mind and purposed in his heart, not reluctantly or sorrowfully or under compulsion, for God loves (He takes pleasure in, prizes above other things, and is unwilling to abandon or to do without) a cheerful (joyous, “prompt to do it”) giver [whose heart is in his giving]."
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "<strong>IICorinthians 9:7 (Amp)</strong>"
+ },
+ {
+  "type": "button",
+  "text": "Donate Now",
+  "href": "https://donate.stripe.com/28o9C80ZUbBVaLSaEE",
+  "target": "_blank"
+ }
+]

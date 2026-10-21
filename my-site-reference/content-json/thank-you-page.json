@@ -1,0 +1,21 @@
+[
+ {
+  "type": "section"
+ },
+ {
+  "type": "heading",
+  "level": 1,
+  "html": "Thank you for your order."
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "A confirmation mail has been sent to your email."
+ },
+ {
+  "type": "button",
+  "text": "Back to store",
+  "href": "https://christembassytexasvirtualchurch.com/ourstore/",
+  "target": ""
+ }
+]

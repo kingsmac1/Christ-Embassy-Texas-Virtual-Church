@@ -1,0 +1,72 @@
+[
+ {
+  "type": "section"
+ },
+ {
+  "type": "sectionbg",
+  "src": "https://christembassytexasvirtualchurch.com/wp-content/uploads/2023/10/Audience.png"
+ },
+ {
+  "type": "heading",
+  "level": 1,
+  "html": "Contact Us"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "heading",
+  "level": 4,
+  "html": "Call the Office"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "<strong><a href=\"tel:281-965-8970\">281-965-8970</a></strong>"
+ },
+ {
+  "type": "heading",
+  "level": 4,
+  "html": "Church Address"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Christ Embassy Wilcrest 6111A Wilcrest Drive , Houston TX 77072"
+ },
+ {
+  "type": "heading",
+  "level": 4,
+  "html": "Email Us"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "contact@christembassytexasvirtualchurch.com"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "heading",
+  "level": 2,
+  "html": "Get in touch with us"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "heading",
+  "level": 2,
+  "html": "Find yourself in Christ today, it all begins with a prayer of SALVATION."
+ },
+ {
+  "type": "button",
+  "text": "Prayer of Salvation",
+  "href": "https://christembassytexasvirtualchurch.com/prayer-of-salvation/",
+  "target": ""
+ }
+]

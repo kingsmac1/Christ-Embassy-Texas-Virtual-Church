@@ -1,0 +1,13 @@
+# Supabase CLI settings (only used if you deploy from a terminal; the dashboard ignores this file).
+project_id = "christ-embassy-texas-virtual-church"
+
+# Stripe calls the webhook without a Supabase login token, so JWT checking must be OFF for it.
+[functions.stripe-webhook]
+verify_jwt = false
+
+# The website calls these two with the public (anon) key, so the default JWT check is fine.
+[functions.send-form-email]
+verify_jwt = true
+
+[functions.create-checkout-session]
+verify_jwt = true

@@ -1,0 +1,187 @@
+[
+ {
+  "name": "menu \"About Loveworld\" -> /about-loveworld/",
+  "pass": true,
+  "detail": "/about-loveworld/"
+ },
+ {
+  "name": "menu \"Our Ministry\" -> /our-ministry/",
+  "pass": true,
+  "detail": "/our-ministry/"
+ },
+ {
+  "name": "menu \"Contact\" -> /contact/",
+  "pass": true,
+  "detail": "/contact/"
+ },
+ {
+  "name": "menu \"Live Stream\" -> /live-stream/",
+  "pass": true,
+  "detail": "/live-stream/"
+ },
+ {
+  "name": "menu \"Store\" -> /ourstore/",
+  "pass": true,
+  "detail": "/ourstore/"
+ },
+ {
+  "name": "menu \"Home\" -> /",
+  "pass": true,
+  "detail": "/"
+ },
+ {
+  "name": "header \"Donate\" -> /donate/",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "cart icon -> /cart/",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "mobile menu opens with all 7 links",
+  "pass": true,
+  "detail": "Home | About Loveworld | Our Ministry | Contact | Live Stream | Store | Donate"
+ },
+ {
+  "name": "mobile menu closes with Escape",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "mobile menu link navigates and closes",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "no horizontal scroll at 390px (store)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "all 41 original page URLs return 200",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "name": "37 distinct internal links resolve",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "15 external links respond",
+  "pass": false,
+  "detail": "https://loveworldchildrensministry.org/web/about.php# (404) ; https://www.loveworldteensandyouthministry.org/ (UND_ERR_CONNECT_TIMEOUT)"
+ },
+ {
+  "name": "add to cart shows confirmation",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "cart badge counts items (2 + 1 = 3)",
+  "pass": true,
+  "detail": "Cart, 3 items"
+ },
+ {
+  "name": "cart lists both products",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "subtotal is 2×$22.00 + $10.00 = $54.00",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "cart persists after refresh",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "quantity change updates subtotal ($64.00)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "remove item works",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "removal persisted",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "empty cart message",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "contact form: empty submit shows required errors",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "contact form: invalid email is rejected in the browser",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "contact form: posts to send-form-email with form + fields + honeypot",
+  "pass": true,
+  "detail": "{\"form\":\"contact\",\"fields\":{\"name\":\"Test Person\",\"phone\":\"281-555-0100\",\"email\":\"test@example.com\",\"message\":\"Hello\"},\"website\":\"\"}"
+ },
+ {
+  "name": "contact form: success modal appears",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "salvation form: honeypot value reaches the server",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "newsletter: posts form=newsletter",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "sunday special: posts all 7 fields",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "back to school: category radio is required",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "back to school: submits with category",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "checkout: request has only slug + quantity (no prices) and origin",
+  "pass": true,
+  "detail": "{\"items\":[{\"slug\":\"the-gates-of-zion\",\"quantity\":1}],\"origin\":\"http://localhost:5201\"}"
+ },
+ {
+  "name": "checkout: redirects to the returned Stripe URL, then success page clears cart",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "cart cleared on success",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "placeholder keys: form shows a friendly error (no crash)",
+  "pass": true,
+  "detail": ""
+ }
+]

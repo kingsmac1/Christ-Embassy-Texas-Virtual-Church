@@ -1,0 +1,43 @@
+{
+ "info": {
+  "title": "Christ Embassy Texas Virtual Church",
+  "text": "There are no scheduled services.\n\nVisit https://www.christembassytexasvirtualchurch.com to get connected with Christ Embassy Texas Virtual Church.\n\nRequest Prayer",
+  "iframes": [],
+  "videos": [],
+  "links": [
+   "https://www.christembassytexasvirtualchu -> https://www.christembassytexasvirtualchurch.com/"
+  ]
+ },
+ "requests": [
+  "GET https://live.christembassytexasvirtualchurch.com/",
+  "GET https://www.google-analytics.com/analytics.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/webpack-43148b1d84b789a7.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/framework-cb238d1d1b6a6b9d.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/main-42d734e831abcc2f.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/pages/_app-0fdf5efbdc1ce8c2.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/6609-724365c7feb79f1b.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/9196-9a0ea8918534ea54.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/1220-e777b67c5158255e.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/chunks/pages/index-d61f816e5018d7da.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/s5gC0dY8a2zXvBQJE8HKk/_buildManifest.js",
+  "GET https://live.christembassytexasvirtualchurch.com/_next/static/s5gC0dY8a2zXvBQJE8HKk/_ssgManifest.js",
+  "GET https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+  "POST https://metricsengine.io/topics/metrics-ingest/publish",
+  "GET https://geo.life.church/where",
+  "POST https://www.google-analytics.com/j/collect?v=1&_v=j102&a=639464512&t=pageview&_s=1&dl=https%3A%2F%2Flive.christembassytexasvirtualchurch.com%2F&dp=%2F&ul=en-us&dt=Christ%20Embassy%20Texas%20Virtual%20",
+  "GET https://www.googletagmanager.com/gtag/js?id=G-0000000000",
+  "POST https://live.christembassytexasvirtualchurch.com/graphql",
+  "GET https://ps15.pndsn.com/v2/subscribe/sub-c-f4967784-b2ee-11e9-adb2-beabf8c4720b/command.personal.46092dfe-5c23-4167-998e-1c2589c9308e,command.personal.46092dfe-5c23-4167-998e-1c2589c9308e-pnpres,reacti",
+  "GET https://ps15.pndsn.com/v3/history/sub-key/sub-c-f4967784-b2ee-11e9-adb2-beabf8c4720b/channel/command.personal.46092dfe-5c23-4167-998e-1c2589c9308e?max=100&include_uuid=true&include_message_type=true&u",
+  "GET https://ps15.pndsn.com/v3/history/sub-key/sub-c-f4967784-b2ee-11e9-adb2-beabf8c4720b/channel/command.personal.46092dfe-5c23-4167-998e-1c2589c9308e?max=50&include_uuid=true&include_message_type=true&uu",
+  "GET https://imgproxy.life.church/_/rs:fit:256:40/Z3M6Ly9jaG9wLXBy/b2ZpbGUvcHJvZHVj/dGlvbi82MmQ0YTky/ZC04Zjk1LTQ3Nzct/YTA0OC03MzYyYmEw/OTM3MTQvbG9nby8x/NzAwNDgzNTM0MDIy/LnBuZw",
+  "GET https://www.googletagmanager.com/gtag/js?id=G-QVX0T3K751&cx=c&_slc=1",
+  "POST https://www.google-analytics.com/g/collect?v=2&tid=G-0000000000&gtm=45je6aj1z8d_G-0000000000za208xf1&_p=1792590294298&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1412611573.1792590294&frm=0&pscdl=noapi&rcb=3&sr=",
+  "GET https://www.googletagmanager.com/gtag/destination?id=G-QVX0T3K751&cx=c&gtm=4e6aj1",
+  "GET https://www.googletagmanager.com/gtag/destination?id=G-0000000000&cx=c&gtm=4e6aj1h1",
+  "POST https://www.google-analytics.com/g/collect?v=2&tid=G-QVX0T3K751&gtm=45je6aj1h1v9125501052za20gxf1&_p=1792590294298&gcd=13l3l3l3l2l1&npa=0&dma=0&_eu=ABAI&cid=1412611573.1792590294&frm=0&ngs=1&pscdl=noa",
+  "POST https://www.google-analytics.com/g/collect?v=2&tid=G-0000000000&gtm=45je6aj1z8d_G-0000000000za208xf1&_p=1792590294298&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAACAAQ&cid=1412611573.1792590294&frm=0&pscdl=noa",
+  "POST https://www.google-analytics.com/g/collect?v=2&tid=G-QVX0T3K751&gtm=45je6aj1h1v9125501052za20gxf1&_p=1792590294298&gcd=13l3l3l3l2l1&npa=0&dma=0&_eu=ABAIAAQ&cid=1412611573.1792590294&frm=0&ngs=1&pscdl=",
+  "POST https://www.google-analytics.com/g/collect?v=2&tid=G-0000000000&gtm=45je6aj1za200xf1&_p=1792590294298&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&cid=1412611573.1792590294&frm=0&pscdl=noapi&rcb=3&sr=1440"
+ ]
+}

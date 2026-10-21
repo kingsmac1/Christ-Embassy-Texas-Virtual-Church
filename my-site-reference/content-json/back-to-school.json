@@ -1,0 +1,74 @@
+[
+ {
+  "type": "section"
+ },
+ {
+  "type": "sectionbg",
+  "src": "https://christembassytexasvirtualchurch.com/wp-content/uploads/2024/07/Back-to-School-Web-Banner.jpg"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "000"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Day(s)"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": ":"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "00"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Hour(s)"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": ":"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "00"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Minute(s)"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": ":"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "00"
+ },
+ {
+  "type": "p",
+  "level": 0,
+  "html": "Second(s)"
+ },
+ {
+  "type": "section"
+ },
+ {
+  "type": "iframe",
+  "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4120.828257111755!2d-95.57477609047066!3d29.714263534379874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640dd0035936bb9%3A0xf08bec503755c9b0!2sChrist%20Embassy%20Wilcrest%20(CETXV)!5e0!3m2!1sen!2sng!4v1715776969350!5m2!1sen!2sng"
+ }
+]
