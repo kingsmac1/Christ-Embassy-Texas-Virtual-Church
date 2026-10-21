@@ -8,3 +8,5 @@ reference-copies
 *.log
 .tanstack
 .nitro
+.wrangler
+.nitro
