@@ -85,7 +85,7 @@ function HomePage() {
   return (
     <>
       {/* HERO: stays pinned while the rest of the page slides up over it */}
-      <section className="z-0 flex min-h-[calc(100svh-4.5rem)] lg:sticky lg:top-0 items-center overflow-hidden bg-deep text-deep-foreground">
+      <section className="sticky top-0 z-0 flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden bg-deep text-deep-foreground">
         {heroBg ? (
           <motion.img
             src={heroBg.src}
