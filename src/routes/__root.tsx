@@ -1,3 +1,4 @@
+import CookieConsent from "@/components/CookieConsent";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scripts, type ErrorComponentProps } from "@tanstack/react-router";
 import type { ReactNode } from "react";
@@ -113,7 +114,7 @@ function RootComponent() {
           {/* The page slides up over the footer, which stays pinned underneath (large screens). */}
           <main className="relative z-10 flex-1 overflow-x-clip bg-background lg:rounded-b-[2.5rem] lg:shadow-[0_30px_60px_-20px_rgba(8,12,24,0.5)]">
             <PageTransition>
-              <Outlet />
+              <><Outlet /><CookieConsent /></>
             </PageTransition>
           </main>
           <SiteFooter />
